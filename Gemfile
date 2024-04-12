@@ -41,6 +41,9 @@ gem "jbuilder"
 # Use dotenv to load environment variables from .env
 gem "dotenv-rails"
 
+# Use devise for authentication
+gem "devise"
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 
