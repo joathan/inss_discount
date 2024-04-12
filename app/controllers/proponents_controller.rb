@@ -1,25 +1,20 @@
 class ProponentsController < ApplicationController
   before_action :set_proponent, only: %i[ show edit update destroy ]
 
-  # GET /proponents or /proponents.json
   def index
     @proponents = Proponent.all
   end
 
-  # GET /proponents/1 or /proponents/1.json
   def show
   end
 
-  # GET /proponents/new
   def new
     @proponent = Proponent.new
   end
 
-  # GET /proponents/1/edit
   def edit
   end
 
-  # POST /proponents or /proponents.json
   def create
     @proponent = Proponent.new(proponent_params)
 
@@ -34,7 +29,6 @@ class ProponentsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /proponents/1 or /proponents/1.json
   def update
     respond_to do |format|
       if @proponent.update(proponent_params)
@@ -47,7 +41,6 @@ class ProponentsController < ApplicationController
     end
   end
 
-  # DELETE /proponents/1 or /proponents/1.json
   def destroy
     @proponent.destroy!
 
@@ -58,12 +51,10 @@ class ProponentsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_proponent
       @proponent = Proponent.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def proponent_params
       params.require(:proponent).permit(:name, :cpf, :salary, :inss_discount, address: {}, contacts: {})
     end
