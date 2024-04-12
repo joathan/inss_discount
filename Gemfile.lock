@@ -139,10 +139,6 @@ GEM
       rspec (>= 2.99.0, < 4.0)
     i18n (1.14.4)
       concurrent-ruby (~> 1.0)
-    importmap-rails (2.0.1)
-      actionpack (>= 6.0.0)
-      activesupport (>= 6.0.0)
-      railties (>= 6.0.0)
     io-console (0.7.2)
     irb (1.12.0)
       rdoc
@@ -150,6 +146,8 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    jsbundling-rails (1.3.0)
+      railties (>= 6.0.0)
     listen (3.9.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -333,8 +331,8 @@ DEPENDENCIES
   factory_bot_rails
   faker
   guard-rspec
-  importmap-rails
   jbuilder
+  jsbundling-rails (~> 1.3)
   pg (~> 1.1)
   pry-rails
   puma (>= 5.0)
