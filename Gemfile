@@ -62,6 +62,7 @@ group :development, :test do
   gem "guard-rspec"
   gem "pry-rails"
   gem "rspec-rails"
+  gem "rubocop-rails"
   gem "shoulda-matchers"
   gem "simplecov"
 end
