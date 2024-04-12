@@ -1,0 +1,15 @@
+require: rubocop-rails
+
+AllCops:
+  TargetRubyVersion: 3.1
+  Exclude:
+    - bin/**/*
+    - config/**/*
+    - db/schema.rb
+    - db/migrate/*.rb
+    - node_modules/**/*
+    - tmp/**/*
+    - db/schema.rb
+    - db/seeds.rb
+    - ".*"
+  NewCops: enable
