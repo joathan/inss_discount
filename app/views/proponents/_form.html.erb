@@ -1,0 +1,57 @@
+<%= form_with(model: proponent, class: "row g-3") do |form| %>
+  <% if proponent.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(proponent.errors.count, "error") %> prohibited this proponent from being saved:</h2>
+
+      <ul>
+        <% proponent.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="col-md-10">
+    <%= form.label :name, class: "form-label" %>
+    <%= form.text_field :name, class: "form-control form-control-sm" %>
+  </div>
+
+  <div class="col-md-2">
+    <%= form.label :cpf, class: "form-label" %>
+    <%= form.text_field :cpf, class: "form-control form-control-sm" %>
+  </div>
+
+  <p>Endereço:</p>
+  <%= form.fields_for :address do |address_fields| %>
+    <div class="col-md-2">
+      <%= address_fields.label :zip, class: "form-label" %>
+      <%= address_fields.text_field :zip, class: "form-control form-control-sm" %>
+    </div>
+    <div class="col-md-6">
+      <%= form.label :street, class: "form-label" %>
+      <%= address_fields.text_field :street, class: "form-control form-control-sm" %>
+    </div>
+    <div class="col-md-2">
+      <%= form.label :city, class: "form-label" %>
+      <%= address_fields.text_field :city, class: "form-control form-control-sm" %>
+    </div>
+    <div class="col-md-2">
+      <%= form.label :state, class: "form-label" %>
+      <%= address_fields.text_field :state, class: "form-control form-control-sm" %>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :salary, style: "display: block" %>
+    <%= form.number_field :salary %>
+  </div>
+
+  <div>
+    <%= form.label :inss_discount, style: "display: block" %>
+    <%= form.number_field :inss_discount %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
