@@ -56,6 +56,7 @@ class ProponentsController < ApplicationController
     end
 
     def proponent_params
-      params.require(:proponent).permit(:name, :cpf, :salary, :inss_discount, address: {}, contacts: {})
+      params.require(:proponent)
+            .permit(:name, :cpf, :salary, :inss_discount, address: {})
     end
 end
