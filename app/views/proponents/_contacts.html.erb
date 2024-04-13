@@ -1,0 +1,28 @@
+<%# _todo_form.html.erb %>
+<div class="nested-form-wrapper row mt-2" data-new-record="<%= f.object.new_record? %>">
+  <div class="col-md-2">
+    <%= f.label :phone, class: "form-label" %>
+    <%= f.text_field :phone, class: "form-control form-control-sm" %>
+  </div>
+
+  <div class="col-md-3">
+    <%= f.label :kind, class: "form-label" %>
+    <div class="align-content-end form-group">
+      <% Contact.kinds.keys.each do |kind| %>
+        <div class="form-check form-check-inline">
+          <%= f.radio_button :kind, kind, class: "form-check-input" %>
+          <%= f.label kind.to_s.humanize, class: "form-check-label" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="align-content-end col-md-2">
+    <button class="btn" type="button" data-action="nested-form#remove">
+      <i class="bi bi-trash"></i>
+      remover
+    </button>
+  </div>
+
+  <%= f.hidden_field :_destroy %>
+</div>

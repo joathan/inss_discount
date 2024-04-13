@@ -1,4 +1,4 @@
-<%= form_with(model: proponent, class: "row g-3", local: true, data: { controller: "nested-form zip" }) do |form| %>
+<%= form_with(model: proponent, class: "row g-3", local: true, data: { controller: "nested-form zip", nested_form_wrapper_selector_value: '.nested-form-wrapper' }) do |form| %>
   <% if proponent.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(proponent.errors.count, "error") %> prohibited this proponent from being saved:</h2>
@@ -25,23 +25,41 @@
   <%= form.fields_for :address do |address_fields| %>
       <div class="col-md-2">
         <%= address_fields.label :zip, class: "form-label" %>
-        <%= address_fields.text_field :zip, class: "form-control form-control-sm", data: { zip_target: "zip", action: "keyup->zip#search" } %>
+        <%= address_fields.text_field :zip,
+            value: proponent.address['zip'],
+            class: "form-control form-control-sm",
+            data: { zip_target: "zip", action: "keyup->zip#search" } %>
       </div>
+
       <div class="col-md-5">
         <%= form.label :street, class: "form-label" %>
-        <%= address_fields.text_field :street, class: "form-control form-control-sm", data: { zip_target: "street" } %>
+        <%= address_fields.text_field :street,
+            value: proponent.address['street'],
+            class: "form-control form-control-sm",
+            data: { zip_target: "street" } %>
       </div>
+
       <div class="col-md-1">
         <%= form.label :number, class: "form-label" %>
-        <%= address_fields.text_field :number, class: "form-control form-control-sm" %>
+        <%= address_fields.text_field :number,
+            value: proponent.address['number'],
+            class: "form-control form-control-sm" %>
       </div>
+
       <div class="col-md-3">
         <%= form.label :city, class: "form-label" %>
-        <%= address_fields.text_field :city, class: "form-control form-control-sm", data: { zip_target: "city" } %>
+        <%= address_fields.text_field :city,
+            value: proponent.address['city'],
+            class: "form-control form-control-sm",
+            data: { zip_target: "city" } %>
       </div>
+
       <div class="col-md-1">
         <%= form.label :state, class: "form-label" %>
-        <%= address_fields.text_field :state, class: "form-control form-control-sm", data: { zip_target: "state" } %>
+        <%= address_fields.text_field :state,
+            value: proponent.address['state'],
+            class: "form-control form-control-sm",
+            data: { zip_target: "state" } %>
       </div>
   <% end %>
 
@@ -57,22 +75,22 @@
 
   <div>
     <p>Contatos:
-      <button data-action="click->nested-form#addAssociation" type="button" class="btn btn-primary btn-sm">
-        <i class="bi bi-plus-circle"></i>
-        Adicionar contato
+      <button type="button" data-action="nested-form#add" class="btn">
+        <i class="bi bi-plus"></i>
+        Novo contato
       </button>
     </p>
-    <div data-nested-form-target="container">
-      <%= form.fields_for :contacts do |contact_form| %>
-        <%= render "contact_fields", f: contact_form %>
+    <template data-nested-form-target="template">
+      <%= form.fields_for :contacts, Contact.new, child_index: 'NEW_RECORD' do |todo_fields| %>
+        <%= render "contacts", f: todo_fields %>
       <% end %>
+    </template>
 
-      <div id="contact-template" style="display:none;">
-        <%= form.fields_for :contacts, Contact.new, child_index: "NEW_RECORD" do |contact_form| %>
-          <%= render "contact_fields", f: contact_form %>
-        <% end %>
-      </div>
-    </div>
+    <%= form.fields_for :contacts do |todo_fields| %>
+      <%= render "contacts", f: todo_fields %>
+    <% end %>
+
+    <div data-nested-form-target="target"></div>
   </div>
   
   <div>

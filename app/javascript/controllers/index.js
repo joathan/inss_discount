@@ -1,9 +1,7 @@
 import { application } from "./application";
 
-import HelloController from "./hello_controller";
-import NestedFormController from "./nested_form_controller";
 import ZipController from "./zip_controller";
+import RailsNestedForm from "@stimulus-components/rails-nested-form";
 
-application.register("hello", HelloController);
-application.register("nested-form", NestedFormController);
 application.register("zip", ZipController);
+application.register("nested-form", RailsNestedForm);
