@@ -20,6 +20,15 @@
   </p>
 
   <p>
+    <strong>Contatos:</strong>
+    <% proponent.contacts.each do |contact| %>
+      <p>
+        <%= contact.kind %>: <%= contact.phone %>
+      </p>
+    <% end %>
+  </p>
+
+  <p>
     <strong>Inss discount:</strong>
     <%= proponent.inss_discount %>
   </p>

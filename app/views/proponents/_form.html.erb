@@ -56,6 +56,26 @@
   </div>
 
   <div>
+    <p>Contatos:
+      <button data-action="click->nested-form#addAssociation" type="button" class="btn btn-primary btn-sm">
+        <i class="bi bi-plus-circle"></i>
+        Adicionar contato
+      </button>
+    </p>
+    <div data-nested-form-target="container">
+      <%= form.fields_for :contacts do |contact_form| %>
+        <%= render "contact_fields", f: contact_form %>
+      <% end %>
+
+      <div id="contact-template" style="display:none;">
+        <%= form.fields_for :contacts, Contact.new, child_index: "NEW_RECORD" do |contact_form| %>
+          <%= render "contact_fields", f: contact_form %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  
+  <div>
     <%= form.submit %>
   </div>
 <% end %>

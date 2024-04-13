@@ -10,6 +10,7 @@ class ProponentsController < ApplicationController
 
   def new
     @proponent = Proponent.new
+    @proponent.contacts.build
   end
 
   def edit
@@ -57,6 +58,6 @@ class ProponentsController < ApplicationController
 
     def proponent_params
       params.require(:proponent)
-            .permit(:name, :cpf, :salary, :inss_discount, address: {})
+            .permit(:name, :cpf, :salary, :inss_discount, address: {}, contacts_attributes: [:id, :phone, :kind, :_destroy])
     end
 end

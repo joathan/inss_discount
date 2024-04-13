@@ -1,0 +1,28 @@
+<!-- app/views/users/_contacts.html.erb -->
+
+<% id_counter ||= 0 %>
+
+<div class="nested-fields row" data-new-record="<%= f.object.new_record? %>">
+  <div class="col-md-2">
+    <%= f.label :phone, "Fone", class: "form-label" %>
+    <%= f.text_field :phone, class: "form-control form-control-sm" %>
+  </div>
+
+  <div class="align-content-end col-md-3 form-group">
+    <%= f.label :kind, class: "mb-2" %><br>
+    <% Contact.kinds.keys.each do |kind| %>
+      <div class="form-check form-check-inline">
+        <% id_counter += 1 %>
+        <%= f.radio_button :kind, kind, id: "contact_#{id_counter}_kind_#{kind}", class: "form-check-input" %>
+        <%= f.label "contact_#{id_counter}_kind_#{kind}", kind.to_s.humanize, for: "contact_#{id_counter}_kind_#{kind}", class: "form-check-label" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="align-content-md-end col-md-auto">
+    <%= f.hidden_field :_destroy %>
+    <%= link_to '#', data: { action: "click->nested-form#removeAssociation" } do %>
+      <i class="bi bi-trash"></i>
+    <% end %>
+  </div>
+</div>
