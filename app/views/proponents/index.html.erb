@@ -2,13 +2,34 @@
 
 <h1>Proponents</h1>
 
-<div id="proponents">
-  <% @proponents.each do |proponent| %>
-    <%= render proponent %>
-    <p>
-      <%= link_to "Show this proponent", proponent %>
-    </p>
-  <% end %>
-</div>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>CPF</th>
+      <th>Address</th>
+      <th>Salary</th>
+      <th>INSS Discount</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @proponents.each do |proponent| %>
+      <tr>
+        <td><%= proponent.name %></td>
+        <td><%= proponent.cpf %></td>
+        <td><%= address_formatted(proponent) %></td>
+        <td><%= proponent.formatted_salary %></td>
+        <td><%= proponent.inss_discount %></td>
+        <td><%= link_to 'Show', proponent %></td>
+        <td><%= link_to 'Edit', edit_proponent_path(proponent) %></td>
+        <td><%= link_to 'Destroy', proponent, method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @proponents %>
 
 <%= link_to "New proponent", new_proponent_path %>
