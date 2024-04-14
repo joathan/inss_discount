@@ -1,53 +1,94 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Proponents</h1>
+<h2>Proponents</h2>
 
-<div class="row">
-  <div class="col-md-6"
-      data-controller="pie-chart"
-      data-pie-chart-labels='<%= @salary_distribution.keys.to_json.html_safe %>'
-      data-pie-chart-data="<%= @salary_distribution.values.to_json.html_safe %>">
-    
-    <canvas data-pie-chart-target="canvas" id="myPieChart" width="400" height="400"></canvas>
+<div class="card">
+  <div class="card-header">
+    Salário de Contribuição (R$)
   </div>
-  <div class="col-md-6">
-    <h3>Salary distribution</h3>
-    <ul>
-      <% @salary_distribution.each do |key, value| %>
-        <li><%= key %>: <%= value %></li>
-      <% end %>
-    </ul>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-6"
+          data-controller="pie-chart"
+          data-pie-chart-labels='<%= @salary_distribution.keys.to_json.html_safe %>'
+          data-pie-chart-data="<%= @salary_distribution.values.to_json.html_safe %>">
+        <canvas data-pie-chart-target="canvas" id="myPieChart" width="400" height="400"></canvas>
+      </div>
+      <div class="col-md-6">
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th>Salary Range</th>
+              <th>Quantity</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @salary_distribution.each do |range, quantity| %>
+              <tr>
+                <td><%= range %></td>
+                <td><%= quantity %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>CPF</th>
-      <th>Address</th>
-      <th>Salary</th>
-      <th>INSS Discount</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="card mt-2">
+  <div class="card-header d-flex justify-content-between">
+    <div>
+      Proponents
+    </div>
+    <div>
+      <%= button_to new_proponent_path, class: "btn btn-primary btn-sm", title: "Novo proponente" do %>
+        <i class="bi bi-person-plus"></i>
+      <% end %>
+    </div>
+  </div>
+  <div>
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>CPF</th>
+          <th>Address</th>
+          <th>Salary</th>
+          <th>INSS</th>
+          <th colspan="3">Actions</th>
+        </tr>
+      </thead>
 
-  <tbody>
-    <% @proponents.each do |proponent| %>
-      <tr>
-        <td><%= proponent.name %></td>
-        <td><%= proponent.cpf %></td>
-        <td><%= address_formatted(proponent) %></td>
-        <td><%= proponent.formatted_salary %></td>
-        <td><%= proponent.inss_discount %></td>
-        <td><%= link_to 'Show', proponent %></td>
-        <td><%= link_to 'Edit', edit_proponent_path(proponent) %></td>
-        <td><%= link_to 'Destroy', proponent, method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<%= paginate @proponents %>
-
-<%= link_to "New proponent", new_proponent_path %>
+      <tbody>
+        <% @proponents.each do |proponent| %>
+          <tr>
+            <td><%= proponent.name %></td>
+            <td><%= proponent.cpf %></td>
+            <td><%= address_formatted(proponent) %></td>
+            <td><%= proponent.formatted_salary %></td>
+            <td><%= proponent.inss_discount %></td>
+            <td>
+              <%= link_to proponent do %>
+                <i class="bi bi-eye"></i>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to edit_proponent_path(proponent) do %>
+                <i class="bi bi-pencil"></i>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to proponent, method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } do %>
+                <i class="bi bi-trash"></i>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="card-footer">
+    <%= paginate @proponents %>
+  </div>
+</div>
