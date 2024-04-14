@@ -14,3 +14,6 @@ AllCops:
     - db/seeds.rb
     - ".*"
   NewCops: enable
+
+Metrics/BlockLength:
+  ExcludedMethods: ['describe']
