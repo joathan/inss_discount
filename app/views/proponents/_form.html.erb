@@ -26,7 +26,7 @@
       <div class="col-md-2">
         <%= address_fields.label :zip, class: "form-label" %>
         <%= address_fields.text_field :zip,
-            value: proponent.address['zip'],
+            value: proponent.address&.[]('zip'),
             class: "form-control form-control-sm",
             data: { zip_target: "zip", action: "keyup->zip#search" } %>
       </div>
@@ -34,7 +34,7 @@
       <div class="col-md-5">
         <%= form.label :street, class: "form-label" %>
         <%= address_fields.text_field :street,
-            value: proponent.address['street'],
+            value: proponent.address&.[]('street'),
             class: "form-control form-control-sm",
             data: { zip_target: "street" } %>
       </div>
@@ -42,14 +42,14 @@
       <div class="col-md-1">
         <%= form.label :number, class: "form-label" %>
         <%= address_fields.text_field :number,
-            value: proponent.address['number'],
+            value: proponent.address&.[]('number'),
             class: "form-control form-control-sm" %>
       </div>
 
       <div class="col-md-3">
         <%= form.label :city, class: "form-label" %>
         <%= address_fields.text_field :city,
-            value: proponent.address['city'],
+            value: proponent.address&.[]('city'),
             class: "form-control form-control-sm",
             data: { zip_target: "city" } %>
       </div>
@@ -57,7 +57,7 @@
       <div class="col-md-1">
         <%= form.label :state, class: "form-label" %>
         <%= address_fields.text_field :state,
-            value: proponent.address['state'],
+            value: proponent.address&.[]('state'),
             class: "form-control form-control-sm",
             data: { zip_target: "state" } %>
       </div>
