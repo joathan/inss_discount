@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class ProponentsController < ApplicationController
-  before_action :set_proponent, only: %i[ show edit update destroy ]
+  before_action :set_proponent, only: %i[show edit update destroy]
 
   def index
     @proponents = Proponent.order(:name)
@@ -7,23 +9,21 @@ class ProponentsController < ApplicationController
                            .per(5)
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @proponent = Proponent.new
     @proponent.contacts.build
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @proponent = Proponent.new(proponent_params)
 
     respond_to do |format|
       if @proponent.save
-        format.html { redirect_to proponent_url(@proponent), notice: "Proponent was successfully created." }
+        format.html { redirect_to proponent_url(@proponent), notice: 'Proponent was successfully created.' }
         format.json { render :show, status: :created, location: @proponent }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -35,7 +35,7 @@ class ProponentsController < ApplicationController
   def update
     respond_to do |format|
       if @proponent.update(proponent_params)
-        format.html { redirect_to proponent_url(@proponent), notice: "Proponent was successfully updated." }
+        format.html { redirect_to proponent_url(@proponent), notice: 'Proponent was successfully updated.' }
         format.json { render :show, status: :ok, location: @proponent }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -48,18 +48,20 @@ class ProponentsController < ApplicationController
     @proponent.destroy!
 
     respond_to do |format|
-      format.html { redirect_to proponents_url, notice: "Proponent was successfully destroyed." }
+      format.html { redirect_to proponents_url, notice: 'Proponent was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    def set_proponent
-      @proponent = Proponent.find(params[:id])
-    end
 
-    def proponent_params
-      params.require(:proponent)
-            .permit(:name, :cpf, :salary, :inss_discount, address: {}, contacts_attributes: [:id, :phone, :kind, :_destroy])
-    end
+  def set_proponent
+    @proponent = Proponent.find(params[:id])
+  end
+
+  def proponent_params
+    params.require(:proponent)
+          .permit(:name, :cpf, :salary, :inss_discount, address: {}, contacts_attributes: %i[id phone kind
+                                                                                             _destroy])
+  end
 end

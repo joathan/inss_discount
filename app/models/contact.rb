@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class Contact < ApplicationRecord
-  enum :kind, [ :personal, :reference ]
+  enum :kind, %i[personal reference]
 
   belongs_to :proponent
 end
