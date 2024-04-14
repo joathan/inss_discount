@@ -1,2 +1,13 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
+
+#myPieChart {
+  display: block;
+  margin: 0;
+}
+
+[data-controller="pie-chart"] {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
