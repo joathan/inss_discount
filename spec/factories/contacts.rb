@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :contact do
     phone { [Faker::PhoneNumber.cell_phone, Faker::PhoneNumber.phone_number].sample }
-    kind { %W[personal reference].sample }
+    kind { %w[personal reference].sample }
     proponent
   end
 end
