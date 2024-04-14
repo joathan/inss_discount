@@ -16,4 +16,5 @@ AllCops:
   NewCops: enable
 
 Metrics/BlockLength:
-  ExcludedMethods: ['describe']
+  Exclude:
+    - 'spec/**/*'
