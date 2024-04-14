@@ -65,7 +65,9 @@
 
   <div class="col-md-2">
     <%= form.label :salary, class: "form-label" %>
-    <%= form.text_field :salary, class: "form-control form-control-sm" %>
+    <%= form.text_field :salary,
+        value: proponent.formatted_salary,
+        class: "form-control form-control-sm" %>
   </div>
 
   <div class="col-md-2">
