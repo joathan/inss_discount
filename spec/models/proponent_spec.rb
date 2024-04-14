@@ -61,9 +61,10 @@ RSpec.describe Proponent, type: :model do
     end
   end
 
-  describe 'callbacks' do
+  describe 'setter for salary' do
     let(:proponent) { Proponent.new(salary: 'R$ 1.500,00') }
-    it 'removes non-numeric characters from salary before save' do
+
+    it 'removes non-numeric characters and sets salary correctly' do
       expect(proponent.salary).to eq(150_000)
     end
   end
