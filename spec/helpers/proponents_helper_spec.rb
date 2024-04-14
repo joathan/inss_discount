@@ -1,15 +1,15 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-# Specs in this file have access to a helper object that includes
-# the ProponentsHelper. For example:
-#
-# describe ProponentsHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
 RSpec.describe ProponentsHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe '#address_formatted' do
+    let(:proponent) do
+      Proponent.new(street: 'Rua das Flores', number: '123', city: 'São Paulo', state: 'SP', zip: '12345-678')
+    end
+
+    it 'returns formatted address' do
+      expect(helper.address_formatted(proponent)).to eq('Rua das Flores, nº 123, São Paulo - SP, 12345-678')
+    end
+  end
 end

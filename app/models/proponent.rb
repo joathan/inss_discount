@@ -19,8 +19,4 @@ class Proponent < ApplicationRecord
     cleaned_salary = value.to_s.gsub(/[^\d]/, '').to_i
     super(cleaned_salary)
   end
-
-  def address_formatted
-    "#{street}, nº #{number}, #{city} - #{state}, #{zip}"
-  end
 end
