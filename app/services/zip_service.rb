@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Path: app/services/zip_service.rb
 class ZipService
   URL = 'https://viacep.com.br/ws/'
 

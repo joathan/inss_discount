@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Path: app/controllers/proponents_controller.rb
 class ProponentsController < ApplicationController
   before_action :set_proponent, only: %i[show edit update destroy]
 
