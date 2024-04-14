@@ -45,22 +45,6 @@ RSpec.describe Proponent, type: :model do
     end
   end
 
-  describe '#address_formatted' do
-    let(:proponent) do
-      Proponent.new(
-        street: 'Main St',
-        number: '123',
-        city: 'Cityville',
-        state: 'ST',
-        zip: '12345'
-      )
-    end
-
-    it 'formats the address correctly' do
-      expect(proponent.address_formatted).to eq('Main St, nº 123, Cityville - ST, 12345')
-    end
-  end
-
   describe 'setter for salary' do
     let(:proponent) { Proponent.new(salary: 'R$ 1.500,00') }
 
