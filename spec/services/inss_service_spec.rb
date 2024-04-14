@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe InssService, type: :service do
@@ -19,7 +21,7 @@ RSpec.describe InssService, type: :service do
           expected_contribution = (1045.00 * 0.075 + (2000.00 - 1045.00) * 0.09).round(2)
           result = InssService.calculate_contribution(salary)
 
-          expect(result[:inss_value]).to be_within(10).of(expected_contribution)
+          expect(result[:inss_value]).to be_within(1).of(expected_contribution)
         end
       end
 
@@ -33,7 +35,7 @@ RSpec.describe InssService, type: :service do
           ).round(2)
           result = InssService.calculate_contribution(salary)
 
-          expect(result[:inss_value]).to be_within(10).of(expected_contribution)
+          expect(result[:inss_value]).to be_within(1).of(expected_contribution)
         end
       end
 
