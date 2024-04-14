@@ -14,11 +14,8 @@ class InssService
   #
   # @param salary_cents [Integer] The salary in cents.
   # @return [Hash] A hash containing the effective rate and the INSS value.
-  def self.calculate_contribution(salary_cents)
+  def self.calculate_contribution(salary_cents, total_contribution: 0.0, previous_limit: 0.0)
     salary = salary_cents / 100.0
-
-    total_contribution = 0.0
-    previous_limit = 0.0
 
     INSS_CONFIG.each do |bracket|
       next unless salary > previous_limit
