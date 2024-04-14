@@ -2,6 +2,24 @@
 
 <h1>Proponents</h1>
 
+<div class="row">
+  <div class="col-md-6"
+      data-controller="pie-chart"
+      data-pie-chart-labels='<%= @salary_distribution.keys.to_json.html_safe %>'
+      data-pie-chart-data="<%= @salary_distribution.values.to_json.html_safe %>">
+    
+    <canvas data-pie-chart-target="canvas" id="myPieChart" width="400" height="400"></canvas>
+  </div>
+  <div class="col-md-6">
+    <h3>Salary distribution</h3>
+    <ul>
+      <% @salary_distribution.each do |key, value| %>
+        <li><%= key %>: <%= value %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
 <table>
   <thead>
     <tr>

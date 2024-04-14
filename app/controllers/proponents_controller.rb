@@ -8,6 +8,8 @@ class ProponentsController < ApplicationController
     @proponents = Proponent.order(:name)
                            .page(params[:page])
                            .per(5)
+
+    @salary_distribution = Proponent.salary_distribution
   end
 
   def show; end
