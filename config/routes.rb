@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'inss/calculate'
   get 'zip/search'
   resources :proponents
   devise_for :users
