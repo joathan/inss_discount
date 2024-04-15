@@ -9,7 +9,7 @@ User.create!(
 )
 
 50.times do |i|
-  Proponent.create!(
+  proponent = Proponent.create!(
     name: Faker::Name.name,
     cpf: Faker::IdNumber.brazilian_citizen_number,
     address: {
@@ -22,4 +22,11 @@ User.create!(
     salary: Faker::Number.between(from: 100000, to: 1000000),
     inss_discount: 100 + i
   )
+
+  rand(1..3).times do
+    proponent.contacts.create!(
+      kind: ['reference', 'personal'].sample,
+      phone: Faker::PhoneNumber.cell_phone
+    )
+  end
 end
