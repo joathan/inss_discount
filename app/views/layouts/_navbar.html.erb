@@ -8,7 +8,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <%= link_to 'Proponents', proponents_path, class: "nav-link #{'active' if current_page?(proponents_path)}" %>
+          <%= link_to t("views.nav.item"), proponents_path, class: "nav-link #{'active' if current_page?(proponents_path)}" %>
         </li>
       </ul>
       <ul class="navbar-nav mb-2 mb-lg-0">
@@ -17,9 +17,9 @@
             <%= current_user.email %>
           </a>
           <ul class="dropdown-menu dropdown-menu-end">
-            <%= link_to("Perfil", edit_user_registration_path, class: "dropdown-item") %>
+            <%= link_to(t("views.nav.user.profile"), edit_user_registration_path, class: "dropdown-item") %>
             <li><hr class="dropdown-divider"></li>
-            <%= button_to("Sair", destroy_user_session_path, method: :delete, class: "dropdown-item") %>
+            <%= button_to(t("views.nav.user.logout"), destroy_user_session_path, method: :delete, class: "dropdown-item") %>
           </ul>
         </li>
       </ul>
