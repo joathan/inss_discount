@@ -1,3 +1,4 @@
+require 'sidekiq'
 require 'sidekiq/web'
 
 sidekiq_config = { url: ENV['REDIS_URL'] }

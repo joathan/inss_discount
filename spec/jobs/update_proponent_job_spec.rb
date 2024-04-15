@@ -17,7 +17,7 @@ RSpec.describe UpdateProponentJob, type: :job do
     let(:inss_discount) { 100 }
 
     it 'updates the proponent salary and inss discount' do
-      job.perform(proponent_id: proponent.id, salary:, inss_discount:)
+      job.perform(proponent.id, salary, inss_discount)
 
       proponent.reload
 
@@ -27,7 +27,7 @@ RSpec.describe UpdateProponentJob, type: :job do
 
     context 'when the proponent does not exist' do
       it 'raises a ActiveRecord::RecordNotFound' do
-        expect { job.perform(proponent_id: 0, salary:, inss_discount:) }
+        expect { job.perform(0, salary, inss_discount) }
           .to raise_error(ActiveRecord::RecordNotFound)
       end
     end

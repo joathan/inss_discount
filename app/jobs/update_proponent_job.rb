@@ -4,7 +4,7 @@
 class UpdateProponentJob < ApplicationJob
   queue_as :default
 
-  def perform(proponent_id:, salary:, inss_discount:)
+  def perform(proponent_id, salary, inss_discount)
     @proponent = Proponent.find(proponent_id)
 
     raise ActiveRecord::RecordNotFound if @proponent.blank?

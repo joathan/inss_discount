@@ -37,7 +37,9 @@ class ProponentsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @proponent.update(proponent_params)
+      if @proponent.update(proponent_params.except(:salary, :inss_discount))
+        UpdateProponentJob.perform_later(@proponent.id, proponent_params[:salary], proponent_params[:inss_discount])
+
         format.html { redirect_to proponent_url(@proponent), notice: 'Proponent was successfully updated.' }
         format.json { render :show, status: :ok, location: @proponent }
       else
