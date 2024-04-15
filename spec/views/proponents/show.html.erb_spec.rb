@@ -1,18 +1,20 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "proponents/show", type: :view do
+RSpec.describe 'proponents/show', type: :view do
   before(:each) do
     assign(:proponent, Proponent.create!(
-      name: "Name",
-      cpf: "Cpf",
-      address: "",
-      contacts: "",
-      salary: 2,
-      inss_discount: 3
-    ))
+                         name: 'Name',
+                         cpf: 'Cpf',
+                         address: '',
+                         contacts: '',
+                         salary: 2,
+                         inss_discount: 3
+                       ))
   end
 
-  it "renders attributes in <p>" do
+  it 'renders attributes in <p>' do
     render
     expect(rendered).to match(/Name/)
     expect(rendered).to match(/Cpf/)

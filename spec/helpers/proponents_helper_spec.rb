@@ -4,7 +4,8 @@ require 'rails_helper'
 
 RSpec.describe ProponentsHelper, type: :helper do
   let(:proponent) do
-    build(:proponent, street: 'Rua das Flores', number: 123, city: 'São Paulo', state: 'SP', zip: '12345-678', salary: 1_500_00, inss_discount: 500)
+    build(:proponent, street: 'Rua das Flores', number: 123, city: 'São Paulo', state: 'SP', zip: '12345-678',
+                      salary: 1_500_00, inss_discount: 500)
   end
 
   describe '#address_formatted' do
