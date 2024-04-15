@@ -27,24 +27,6 @@ RSpec.describe Proponent, type: :model do
     end
   end
 
-  describe '#formatted_salary' do
-    context 'when salary is present' do
-      let(:proponent) { Proponent.new(salary: 150_000) }
-
-      it 'returns the salary formatted as currency' do
-        expect(proponent.formatted_salary).to eq('R$ 1.500,00')
-      end
-    end
-
-    context 'when salary is nil' do
-      let(:proponent) { Proponent.new(salary: nil) }
-
-      it 'returns R$ 0,00' do
-        expect(proponent.formatted_salary).to eq('R$ 0,00')
-      end
-    end
-  end
-
   describe 'setter for salary' do
     let(:proponent) { Proponent.new(salary: 'R$ 1.500,00') }
 

@@ -3,9 +3,18 @@ import { Controller } from "@hotwired/stimulus";
 export default class extends Controller {
   static targets = ["discount", "salary"];
 
+  connect() {
+    this.salaryTarget.addEventListener("blur", (event) => this.onBlur(event));
+  }
+
+  onBlur(event) {
+    setTimeout(() => {
+      this.calculate();
+    }, 100); 
+  }
+
   async calculate() {
     const salary = this.salaryTarget.value.replace(/\D/g, "");
-    if (salary.length < 5) return;
 
     const response = await fetch(`/inss/calculate?salary=${salary}`);
     const data = await response.json();
@@ -15,6 +24,11 @@ export default class extends Controller {
       return;
     }
 
-    this.discountTarget.value = data.inss_value;
+    this.discountTarget.value = this.formatCurrency(data.inss_value);
+  }
+
+  formatCurrency(value) {
+    const number = Number(value);
+    return number.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
   }
 }
