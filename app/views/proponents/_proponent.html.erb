@@ -1,36 +1,54 @@
-<div id="<%= dom_id proponent %>">
-  <p>
-    <strong>Name:</strong>
-    <%= proponent.name %>
-  </p>
-
-  <p>
-    <strong>Cpf:</strong>
-    <%= proponent.cpf %>
-  </p>
-
-  <p>
-    <strong>Address:</strong>
-    <%= address_formatted(proponent) %>
-  </p>
-
-  <p>
-    <strong>Salary:</strong>
-    <%= salary_formatted(proponent) %>
-  </p>
-
-  <p>
-    <strong>Contatos:</strong>
-    <% proponent.contacts.each do |contact| %>
-      <p>
-        <%= contact.kind %>: <%= contact.phone %>
-      </p>
-    <% end %>
-  </p>
-
-  <p>
-    <strong>Inss discount:</strong>
-    <%= inss_discount_formatted(proponent) %>
-  </p>
-
+<div class="card">
+  <div class="card-header text-end">
+    <h3>
+      <%= t("views.proponent.title") %>: <%= simplify_name(proponent) %>
+    </h3>
+  </div>
+  <div class="card-body">
+    <table>
+      <tbody class="text-start">
+        <tr>
+          <th class="col-sm-3"><%= t("views.proponent.name") %></th>
+          <td><%= proponent.name %></td>
+        </tr>
+        <tr>
+          <th class="col-sm-3"><%= t("views.proponent.cpf") %></th>
+          <td><%= proponent.cpf %></td>
+        </tr>
+        <tr>
+          <th class="col-sm-3"><%= t("views.proponent.address") %></th>
+          <td><%= address_formatted(proponent) %></td>
+        </tr>
+        <tr>
+          <th class="col-sm-3"><%= t("views.proponent.salary") %></th>
+          <td><%= salary_formatted(proponent) %></td>
+        </tr>
+        <tr>
+          <th class="col-sm-3"><%= t("views.proponent.inss_discount") %></th>
+          <td><%= inss_discount_formatted(proponent) %></td>
+        </tr>
+        <tr>
+          <th><%= t("views.proponent.contacts") %></th>
+          <td>
+            <% proponent.contacts.each do |contact| %>
+              <p class="m-0 p-0">
+                <%= t("contact.kinds.#{contact.kind}") %>: <%= contact.phone %>
+              </p>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card-footer text-body-secondary">
+    <div class="d-flex justify-content-between">
+      <div class="align-content-center col-ms-6">
+        <%= t("views.proponent.updated_at") %>: <%= proponent.updated_at.strftime("%d/%m/%Y %H:%M") %>
+      </div>
+      <div class="align-content-center col-ms-6">
+        <%= link_to t("helpers.submit.update"), edit_proponent_path(@proponent), class: "btn btn-info btn-sm" %> 
+        <%= link_to t("helpers.submit.delete"), @proponent, data: { "turbo-method": :delete, turbo_confirm: t("helpers.confirm.delete") }, class: "btn btn-danger btn-sm" %>
+      </div>
+    </div>
+  </div>
 </div>

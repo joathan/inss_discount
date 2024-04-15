@@ -1,10 +1,6 @@
 <p style="color: green"><%= notice %></p>
+<div class="d-flex justify-content-end mb-2">
+  <%= link_to t("views.button.back"), proponents_path, class: "btn btn-dark btn-sm" %>
+</div>
 
 <%= render @proponent %>
-
-<div>
-  <%= link_to "Edit this proponent", edit_proponent_path(@proponent) %> |
-  <%= link_to "Back to proponents", proponents_path %>
-
-  <%= button_to "Destroy this proponent", @proponent, method: :delete %>
-</div>
