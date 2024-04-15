@@ -42,7 +42,7 @@
       Proponents
     </div>
     <div>
-      <%= button_to new_proponent_path, class: "btn btn-primary btn-sm", title: "Novo proponente" do %>
+      <%= link_to new_proponent_path, class: "btn btn-primary btn-sm", title: "Novo proponente" do %>
         <i class="bi bi-person-plus"></i>
       <% end %>
     </div>
@@ -66,8 +66,8 @@
             <td><%= proponent.name %></td>
             <td><%= proponent.cpf %></td>
             <td><%= address_formatted(proponent) %></td>
-            <td><%= proponent.formatted_salary %></td>
-            <td><%= proponent.inss_discount %></td>
+            <td><%= salary_formatted(proponent) %></td>
+            <td><%= inss_discount_formatted(proponent) %></td>
             <td>
               <%= link_to proponent do %>
                 <i class="bi bi-eye"></i>
