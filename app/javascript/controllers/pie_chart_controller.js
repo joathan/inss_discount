@@ -33,7 +33,7 @@ export default class extends Controller {
         labels: labels,
         datasets: [
           {
-            label: "My Dataset",
+            label: "total",
             data: data,
             backgroundColor: backgroundColors,
             hoverOffset: 4,
