@@ -8,7 +8,7 @@ User.create!(
   password: '123123'
 )
 
-10.times do |i|
+50.times do |i|
   Proponent.create!(
     name: Faker::Name.name,
     cpf: Faker::IdNumber.brazilian_citizen_number,
@@ -17,7 +17,7 @@ User.create!(
       number: Faker::Address.building_number,
       city: Faker::Address.city,
       state: Faker::Address.state_abbr,
-      zip_code: Faker::Address.zip_code
+      zip: Faker::Address.zip_code
     },
     salary: Faker::Number.between(from: 100000, to: 1000000),
     inss_discount: 100 + i
