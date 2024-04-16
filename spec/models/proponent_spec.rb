@@ -3,6 +3,15 @@
 require 'rails_helper'
 
 RSpec.describe Proponent, type: :model do
+  describe 'validations' do
+    it { should validate_presence_of(:name) }
+    it { should validate_presence_of(:cpf) }
+    it { should validate_presence_of(:salary) }
+    it { should validate_presence_of(:inss_discount) }
+    it { should validate_numericality_of(:salary).is_greater_than(0) }
+    it { should validate_numericality_of(:inss_discount).is_greater_than(0) }
+  end
+
   describe 'associations' do
     it { is_expected.to have_many(:contacts).dependent(:destroy) }
   end
@@ -24,14 +33,6 @@ RSpec.describe Proponent, type: :model do
                                                              _destroy: '1' }])
 
       expect(proponent_with_contacts.contacts.reload.empty?).to be true
-    end
-  end
-
-  describe 'setter for salary' do
-    let(:proponent) { Proponent.new(salary: 'R$ 1.500,00') }
-
-    it 'removes non-numeric characters and sets salary correctly' do
-      expect(proponent.salary).to eq(150_000)
     end
   end
 end

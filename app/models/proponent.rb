@@ -7,6 +7,9 @@ class Proponent < ApplicationRecord
   has_many :contacts, dependent: :destroy
   accepts_nested_attributes_for :contacts, reject_if: :all_blank, allow_destroy: true
 
+  validates_presence_of :name, :salary, :inss_discount, :cpf
+  validates_numericality_of :salary, :inss_discount, greater_than: 0
+
   def self.salary_distribution
     select(
       "(CASE WHEN salary / 100.0 <= 1045 THEN 'Até R$ 1.045,00' " \
@@ -18,15 +21,5 @@ class Proponent < ApplicationRecord
       .group('salary_range')
       .order(Arel.sql('MIN(salary / 100.0)'))
       .each_with_object({}) { |proponent, hash| hash[proponent.salary_range] = proponent.count }
-  end
-
-  def salary=(value)
-    cleaned_salary = value.to_s.gsub(/[^\d]/, '').to_i
-    super(cleaned_salary)
-  end
-
-  def inss_discount=(value)
-    cleaned_inss_discount = value.to_s.gsub(/[^\d]/, '').to_f
-    super(cleaned_inss_discount)
   end
 end
