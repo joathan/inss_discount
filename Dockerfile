@@ -18,8 +18,4 @@ RUN gem install rails bundler
 RUN bundle install
 RUN yarn install
 
-COPY entrypoint.sh /usr/bin/entrypoint.sh
-RUN chmod +x /usr/bin/entrypoint.sh
-ENTRYPOINT ["entrypoint.sh"]
-
 CMD bundle exec unicorn -c config/unicorn.rb

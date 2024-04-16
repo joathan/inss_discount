@@ -38,6 +38,7 @@ services:
       - .env
     networks:
       - my-network
+    command: bash entrypoint.sh
 
   sidekiq:
     build:
