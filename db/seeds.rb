@@ -1,12 +1,7 @@
 Faker::Config.default_locale = :"pt-BR"
 
 User.delete_all
-Proponent.delete_all
-
-User.create!(
-  email: 'admin@inss.com.br',
-  password: '123123'
-)
+Proponent.all.each(&:destroy)
 
 50.times do |i|
   proponent = Proponent.create!(
@@ -30,3 +25,8 @@ User.create!(
     )
   end
 end
+
+User.create!(
+  email: 'admin@inss.com.br',
+  password: '123123'
+)
