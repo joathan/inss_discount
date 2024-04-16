@@ -103,7 +103,7 @@
         <p><%= t("helpers.label.proponent.contacts") %>
         <button type="button" data-action="nested-form#add" class="btn btn-outline-success btn-sm mx-4">
           <i class="bi bi-plus"></i>
-          Novo contato
+          <%= t("views.proponent.contacts.new") %>
           </button>
         </p>
         <template data-nested-form-target="template">
@@ -122,7 +122,12 @@
 
     <div class="card-footer text-body-secondary">
       <div class="d-flex justify-content-end">
-        <%= form.submit class: "btn btn-sm btn-success" %>
+        <div class="mx-2">
+          <%= link_to t("helpers.submit.show"), @proponent, class: "btn btn-sm btn-info" %>
+        </div>
+        <div>
+          <%= form.submit class: "btn btn-sm btn-success" %>
+        </div>
       </div>
     </div>
   <% end %>
