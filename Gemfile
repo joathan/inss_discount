@@ -92,3 +92,10 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 end
+
+group :test do
+  # Use vcr to record and replay HTTP requests
+  gem 'vcr'
+  # Use webmock to stub HTTP requests
+  gem 'webmock'
+end
