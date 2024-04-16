@@ -50,6 +50,7 @@ en:
         delete: "Are you sure you want to delete?"
     label:
       user:
+        title: "Log in to your account"
         email: "E-mail"
         password: "Password"
         remember_me: "Remember me on this device"
