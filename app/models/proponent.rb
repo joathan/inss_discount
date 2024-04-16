@@ -7,8 +7,8 @@ class Proponent < ApplicationRecord
   has_many :contacts, dependent: :destroy
   accepts_nested_attributes_for :contacts, reject_if: :all_blank, allow_destroy: true
 
-  validates_presence_of :name, :salary, :inss_discount, :cpf
-  validates_numericality_of :salary, :inss_discount, greater_than: 0
+  validates :name, :salary, :inss_discount, :cpf, presence: true
+  validates :salary, :inss_discount, numericality: { greater_than: 0 }
 
   def self.salary_distribution
     select(
