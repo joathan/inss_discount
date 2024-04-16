@@ -23,16 +23,12 @@ class ProponentsController < ApplicationController
 
   def create
     @proponent = Proponent.new(proponent_params)
-    @proponent.salary = clean(proponent_params[:salary])
-    @proponent.inss_discount = clean(proponent_params[:inss_discount])
-
+    cleaning_params
     respond_to do |format|
       if @proponent.save
-        format.html { redirect_to proponent_url(@proponent), notice: 'Proponent was successfully created.' }
-        format.json { render :show, status: :created, location: @proponent }
+        format.html { redirect_to proponent_url(@proponent), notice: t('controller.proponent.create.success') }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @proponent.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -40,17 +36,10 @@ class ProponentsController < ApplicationController
   def update
     respond_to do |format|
       if @proponent.update(proponent_params.except(:salary, :inss_discount))
-        UpdateProponentJob.set(wait: 1.minutes).perform_later(
-          @proponent.id,
-          clean(proponent_params[:salary]),
-          clean(proponent_params[:inss_discount])
-        )
-
-        format.html { redirect_to proponent_url(@proponent), notice: 'Proponent was successfully updated.' }
-        format.json { render :show, status: :ok, location: @proponent }
+        update_proponent_job
+        format.html { redirect_to proponent_url(@proponent), notice: t('controller.proponent.update.success') }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @proponent.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -59,7 +48,7 @@ class ProponentsController < ApplicationController
     @proponent.destroy!
 
     respond_to do |format|
-      format.html { redirect_to proponents_url, notice: 'Proponent was successfully destroyed.' }
+      format.html { redirect_to proponents_url, notice: t('controller.proponent.destroy.success') }
       format.json { head :no_content }
     end
   end
@@ -74,6 +63,17 @@ class ProponentsController < ApplicationController
     params.require(:proponent)
           .permit(:name, :cpf, :salary, :inss_discount, address: {}, contacts_attributes: %i[id phone kind
                                                                                              _destroy])
+  end
+
+  def update_proponent_job
+    UpdateProponentJob.set(wait: 1.minute).perform_later(@proponent.id,
+                                                         clean(proponent_params[:salary]),
+                                                         clean(proponent_params[:inss_discount]))
+  end
+
+  def cleaning_params
+    @proponent.salary = clean(proponent_params[:salary])
+    @proponent.inss_discount = clean(proponent_params[:inss_discount])
   end
 
   def clean(value)
