@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>InssDiscount</title>
+    <title>Inss Discount</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
 
   <body>
     <div class="container-fluid">
+      <div data-controller="flash-messages" data-flash="<%= JSON.dump(flash.to_a) %>"></div>
       <%= render "layouts/navbar" %>
       <%= yield %>
     </div>
