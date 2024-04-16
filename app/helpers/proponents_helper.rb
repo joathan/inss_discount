@@ -24,7 +24,7 @@ module ProponentsHelper
 
   def simplify_name(proponent)
     parts = proponent.name.split
-    
+
     return proponent.name if parts.size < 2
 
     "#{parts.first} #{parts.last}"
