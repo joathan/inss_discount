@@ -1,11 +1,8 @@
-#!/bin/bash
-set -e
-
-# check if the gems are installed, if not, install
+# Gem install
 bundle check || bundle install
+
+# Yarn install
+yarn install
 
 # creating a database
 bundle exec rails db:create
-
-# continue with the original Docker command
-exec "$@"
