@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe '/proponents', type: :request do
   let(:user) { create(:user) }
   let(:valid_attributes) do
-    proponent = attributes_for(:proponent)
+    attributes_for(:proponent)
   end
 
   let(:invalid_attributes) do
@@ -111,7 +111,7 @@ RSpec.describe '/proponents', type: :request do
     context 'with invalid parameters' do
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
         patch proponent_url(proponent), params: { proponent: invalid_attributes }
-        
+
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
