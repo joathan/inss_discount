@@ -24,8 +24,8 @@ RSpec.describe ProponentsHelper, type: :helper do
     context 'when salary is nil' do
       let(:proponent) { Proponent.new(salary: nil) }
 
-      it 'returns R$ 0,00' do
-        expect(salary_formatted(proponent)).to eq('R$ 0,00')
+      it 'returns zero' do
+        expect(salary_formatted(proponent)).to eq(0)
       end
     end
   end
@@ -40,8 +40,8 @@ RSpec.describe ProponentsHelper, type: :helper do
     context 'when inss_discount is nil' do
       let(:proponent) { Proponent.new(inss_discount: nil) }
 
-      it 'returns R$ 0,00' do
-        expect(inss_discount_formatted(proponent)).to eq('R$ 0,00')
+      it 'returns zero' do
+        expect(inss_discount_formatted(proponent)).to eq(0)
       end
     end
   end
