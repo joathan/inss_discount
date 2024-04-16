@@ -3,7 +3,6 @@ import Toastify from "toastify-js";
 
 export default class extends Controller {
   connect() {
-    console.log("FlashMessagesController connected");
     const flashData = JSON.parse(this.element.dataset.flash);
 
     flashData.forEach(([type, message]) => {
