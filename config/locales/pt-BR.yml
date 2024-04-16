@@ -95,6 +95,18 @@
       proponent: 
         new:
           title: "Formulário de Proponente"
+    pagination:
+      first: "Primeiro"
+      previous: "Anterior"
+      next: "Próximo"
+      last: "Último"
+      page: "Página"
+      per_page: "Por página"
+      total: "Total"
+      of: "de"
+      showing: "Mostrando"
+      entries: "entradas"
+      truncate: "..."
 
   controller:
     proponent:

@@ -94,7 +94,19 @@ en:
       proponent: 
         new:
           title: "Proponent Form"
-        
+    pagination:
+      first: "First"
+      previous: "Previous"
+      next: "Next"
+      last: "Last"
+      page: "Page"
+      per_page: "Per Page"
+      total: "Total"
+      of: "of"
+      showing: "Showing"
+      entries: "entries"
+      truncate: "..."
+
   controller:
     proponent:
       create:
