@@ -1,31 +1,105 @@
-# Files in the config/locales directory are used for internationalization and
-# are automatically loaded by Rails. If you want to use locales other than
-# English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t "hello"
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t("hello") %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more about the API, please read the Rails Internationalization guide
-# at https://guides.rubyonrails.org/i18n.html.
-#
-# Be aware that YAML interprets the following case-insensitive strings as
-# booleans: `true`, `false`, `on`, `off`, `yes`, `no`. Therefore, these strings
-# must be quoted to be interpreted as strings. For example:
-#
-#     en:
-#       "yes": yup
-#       enabled: "ON"
-
 en:
-  hello: "Hello world"
+  activerecord:
+    models:
+      proponent: "Proponent"
+      contact: "Contact"
+    attributes:
+      proponent:
+        name: "Name"
+        cpf: "CPF"
+        address: "Address"
+        city: "City"
+        state: "State"
+        salary: "Salary"
+        inss_discount: "INSS Discount"
+        number: "Number"
+        street: "Street"
+        zip_code: "Zip Code"
+        created_at: "Created at"
+        updated_at: "Updated at"
+      contact:
+        kind: "Kind"
+        phone: "Phone"
+    errors:
+      models:
+        proponent:
+          attributes:
+            name:
+              blank: "%{attribute} can't be blank"
+            cpf:
+              blank: "%{attribute} can't be blank"
+            salary:
+              blank: "%{attribute} can't be blank"
+              greater_than: "%{attribute} must be greater than zero"
+            inss_discount:
+              blank: "%{attribute} can't be blank"
+              greater_than: "%{attribute} must be greater than zero"
+
+  contact:
+    kinds:
+      reference: "Reference"
+      personal: "Personal"
+  helpers:
+    submit:
+        create: "Save"
+        edit: "Edit"
+        delete: "Delete"
+        update: "Update"
+        show: "Show"
+    confirm:
+        delete: "Are you sure you want to delete?"
+    label:
+      proponent:
+        address: "Address"
+        contacts: "Contacts"
+      contact:
+        kind: "Kind"
+        phone: "Phone"
+  proponent:
+    views:
+      title: "Proponents"
+      button:
+        new: "New Proponent"
+        edit: "Edit Proponent"
+        delete: "Delete Proponent"
+        show: "Show Proponent"
+
+  views:
+    nav:
+      item: "Proponents"
+      user:
+        profile: "Profile"
+        logout: "Logout"
+    button:
+      back: "Back"
+    proponent:
+      title: "Proponent"
+      sub_title: "Contribution Salary (R$)"
+      report:
+        salary_range: "Salary Range"
+        quantity: "Quantity"
+      name: "Name"
+      cpf: "CPF"
+      address: "Address"
+      salary: "Salary"
+      inss_discount: "INSS Discount"
+      contacts:
+        title: "Contacts"
+        new: "New Contact"
+        remove: "Remove Contact"
+      created_at: "Created at"
+      updated_at: "Updated at"
+      actions: "Actions"
+    form:
+      proponent: 
+        new:
+          title: "Proponent Form"
+        
+  controller:
+    proponent:
+      create:
+        success: "Proponent created successfully"
+      update:
+        success: "Proponent updated successfully"
+      destroy:
+        success: "Proponent deleted successfully"

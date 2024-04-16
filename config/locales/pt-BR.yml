@@ -1,0 +1,106 @@
+"pt-BR":
+  activerecord:
+    models:
+      proponent: "Proponente"
+      contact: "Contato"
+    attributes:
+      proponent:
+        name: "Nome"
+        cpf: "CPF"
+        address: "Endereço"
+        city: "Cidade"
+        state: "Estado"
+        salary: "Salário"
+        inss_discount: "Desconto INSS"
+        number: "Número"
+        street: "Logradouro"
+        zip_code: "CEP"
+        created_at: "Criado em"
+        updated_at: "Atualizado em"
+      contact:
+        kind: "Tipo"
+        phone: "Telefone"
+    errors:
+      models:
+        proponent:
+          attributes:
+            name:
+              blank: "%{attribute} não pode ficar em branco"
+            cpf:
+              blank: "%{attribute} não pode ficar em branco"
+            salary:
+              blank: "%{attribute} não pode ficar em branco"
+              greater_than: "%{attribute} deve ser maior que zero"
+            inss_discount:
+              blank: "%{attribute} não pode ficar em branco"
+              greater_than: "%{attribute} deve ser maior que zero"
+
+  contact:
+    kinds:
+      reference: "Referência"
+      personal: "Pessoal"
+  helpers:
+    submit:
+        create: "Salvar"
+        edit: "Editar"
+        delete: "Deletar"
+        update: "Atualizar"
+        show: "Visualizar"
+    confirm:
+        delete: "Você tem certeza que deseja deletar?"
+    label:
+      proponent:
+        address: "Endereço"
+        contacts: "Contatos"
+      contact:
+        kind: "Tipo"
+        phone: "Telefone"
+
+  proponent:
+    views:
+      title: "Proponentes"
+      button:
+        new: "Novo Proponente"
+        edit: "Editar Proponente"
+        show: "Visualizar Proponente"
+        list: "Listar Proponentes"
+  
+  views:
+    nav:
+      item: "Proponentes"
+      user:
+        profile: "Perfil"
+        logout: "Sair"
+    button:
+      back: "Voltar"
+    proponent:
+      title: "Proponente"
+      sub_title: "Salário de Contribuição (R$)"
+      report:
+        salary_range: "Faixa Salarial"
+        quantity: "Quantidade"
+      name: "Nome"
+      cpf: "CPF"
+      address: "Endereço"
+      salary: "Salário"
+      inss_discount: "Desconto INSS"
+      contacts: 
+        title: "Contatos"
+        new: "Novo Contato"
+        remove: "Remover Contato"
+      created_at: "Criado em"
+      updated_at: "Atualizado em"
+      actions: "Ações"
+    form:
+      proponent: 
+        new:
+          title: "Formulário de Proponente"
+
+  controller:
+    proponent:
+      create:
+        success: "Proponente criado com sucesso!"
+      update:
+        success: "Proponente atualizado com sucesso!"
+      destroy:
+        success: "Proponente deletado com sucesso!"
