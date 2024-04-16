@@ -1,0 +1,132 @@
+es:
+  activerecord:
+    models:
+      proponent: "Proponente"
+      contact: "Contacto"
+    attributes:
+      user:
+        email: "E-mail"
+        password: "Contraseña"
+        remember_me: "Recuérdame"
+      proponent:
+        name: "Nombre"
+        cpf: "CPF"
+        address: "Dirección"
+        city: "Ciudad"
+        state: "Estado"
+        salary: "Salario"
+        inss_discount: "Descuento INSS"
+        number: "Número"
+        street: "Calle"
+        zip_code: "Código Postal"
+        created_at: "Creado en"
+        updated_at: "Actualizado en"
+      contact:
+        kind: "Tipo"
+        phone: "Teléfono"
+    errors:
+      models:
+        proponent:
+          attributes:
+            name:
+              blank: "%{attribute} no puede estar en blanco"
+            cpf:
+              blank: "%{attribute} no puede estar en blanco"
+            salary:
+              blank: "%{attribute} no puede estar en blanco"
+              greater_than: "%{attribute} debe ser mayor que cero"
+            inss_discount:
+              blank: "%{attribute} no puede estar en blanco"
+              greater_than: "%{attribute} debe ser mayor que cero"
+  
+  contact:
+    kinds:
+      reference: "Referencia"
+      personal: "Personal"
+    
+  helpers:
+    submit:
+        create: "Guardar"
+        edit: "Editar"
+        delete: "Eliminar"
+        update: "Actualizar"
+        show: "Mostrar"
+    confirm:
+        delete: "¿Estás seguro de que quieres eliminar?"
+    label:
+      user:
+        title: "Inicia sesión en tu cuenta"
+        email: "E-mail"
+        password: "Contraseña"
+        remember_me: "Recuérdame en este dispositivo"
+        login: "Iniciar sesión"
+        forgot_password: "¿Olvidaste tu contraseña?"
+        sign_up: "Regístrate"
+        dont_have_account: "¿No tienes una cuenta?"
+      proponent:
+        address: "Dirección"
+        contacts: "Contactos"
+      contact:
+        kind: "Tipo"
+        phone: "Teléfono"
+  
+  proponent:
+    views:
+      title: "Proponentes"
+      button:
+        new: "Nuevo Proponente"
+        edit: "Editar Proponente"
+        show: "Mostrar Proponente"
+        list: "Listar Proponentes"
+
+  views:
+    nav:
+      item: "Proponentes"
+      user:
+        profile: "Perfil"
+        logout: "Cerrar sesión"
+    button:
+      back: "Volver"
+    proponent:
+      title: "Proponente"
+      sub_title: "Salario de contribución (R$)"
+      report:
+        salary: "Salario"
+        quantity: "Cantidad"
+      name: "Nombre"
+      cpf: "CPF"
+      address: "Dirección"
+      salary: "Salario"
+      inss_discount: "Descuento INSS"
+      contacts:
+        title: "Contactos"
+        new: "Nuevo Contacto"
+        remove: "Eliminar Contacto"
+      created_at: "Creado en"
+      updated_at: "Actualizado en"
+      actions: "Acciones"
+    form:
+      proponent:
+        new:
+          title: "Nuevo Proponente"
+    pagination:
+      first: "Primero"
+      previous: "Anterior"
+      next: "Próximo"
+      last: "Último"
+      page: "Página"
+      per_page: "Por página"
+      total: "Total"
+      of: "de"
+      showing: "Mostrando"
+      entries: "entradas"
+      truncate: "..."
+
+  controller:
+    proponent:
+      create:
+        success: "Proponente creado con éxito"
+      update:
+        success: "Proponente actualizado con éxito"
+      destroy:
+        success: "Proponente eliminado con éxito"
