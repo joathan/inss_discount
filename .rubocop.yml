@@ -12,6 +12,7 @@ AllCops:
     - tmp/**/*
     - db/schema.rb
     - db/seeds.rb
+    - Guardfile
     - ".*"
   NewCops: enable
 
