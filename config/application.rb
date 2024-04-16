@@ -38,6 +38,14 @@ module InssDiscount
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+    config.i18n.default_locale = :"pt-BR"
+
     config.active_job.queue_adapter = :sidekiq
+    config.log_level = :debug
+    config.log_tags  = [:subdomain, :uuid]
+    config.logger    = ActiveSupport::TaggedLogging.new(Logger.new(STDOUT))
+
+    config.cache_store = :redis_store, ENV['CACHE_URL'],
+                         { namespace: 'inss::cache' }
   end
 end

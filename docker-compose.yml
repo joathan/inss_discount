@@ -1,0 +1,82 @@
+services:
+  postgres:
+    image: postgres:14.2
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - '5432:5432'
+    volumes:
+      - inss-postgres:/var/lib/postgresql/data
+    networks:
+      - my-network
+
+  redis:
+    image: redis:7.0
+    ports:
+      - '6379:6379'
+    volumes:
+      - inss-redis:/var/lib/redis/data
+    networks:
+      - my-network
+
+  inss:
+    build:
+      context: .
+    tty: true
+    stdin_open: true
+    volumes:
+      - .:/home/app/web
+      - bundle_cache:/usr/local/bundle
+    links:
+      - postgres
+      - redis
+    ports:
+      - '8010:8010'
+    env_file:
+      - .env
+    networks:
+      - my-network
+
+  sidekiq:
+    build:
+      context: .
+    command: bundle exec sidekiq 
+    links:
+      - postgres
+      - redis
+    env_file:
+      - .env
+    networks:
+      - my-network
+
+  guard:
+    build: .
+    volumes:
+      - .:/home/app/web
+    environment:
+      - RAILS_ENV=development
+    command: bundle exec guard --no-bundler-warning --no-interactions
+    networks:
+      - my-network
+
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
+    links:
+      - inss
+    ports:
+      - '8020:8020'
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge
+
+volumes:
+  inss-postgres:
+  inss-redis:
+  bundle_cache:
