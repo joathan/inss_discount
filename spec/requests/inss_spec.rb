@@ -11,7 +11,7 @@ RSpec.describe 'Insses', type: :request do
     end
 
     it 'returns http success' do
-      get '/inss/calculate', params: { salary: "2000" }
+      get '/inss/calculate', params: { salary: '2000' }
 
       expect(response).to have_http_status(:success)
     end
