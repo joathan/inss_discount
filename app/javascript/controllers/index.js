@@ -16,5 +16,8 @@ application.register("inss", InssController)
 import PieChartController from "./pie_chart_controller"
 application.register("pie-chart", PieChartController)
 
+import RailsNestedForm from "@stimulus-components/rails-nested-form";
+application.register("nested-form", RailsNestedForm);
+
 import ZipController from "./zip_controller"
 application.register("zip", ZipController)
