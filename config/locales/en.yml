@@ -49,6 +49,15 @@ en:
     confirm:
         delete: "Are you sure you want to delete?"
     label:
+      user:
+        email: "E-mail"
+        password: "Password"
+        remember_me: "Remember me on this device"
+        login: "Login"
+        forgot_password: "Forgot your password?"
+        sign_up: "Sign up"
+        dont_have_account: "Don't have an account?"
+
       proponent:
         address: "Address"
         contacts: "Contacts"

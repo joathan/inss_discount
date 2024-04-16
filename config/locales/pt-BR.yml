@@ -4,6 +4,10 @@
       proponent: "Proponente"
       contact: "Contato"
     attributes:
+      user:
+        email: "E-mail"
+        password: "Senha"
+        remember_me: "Lembrar-me"
       proponent:
         name: "Nome"
         cpf: "CPF"
@@ -49,6 +53,15 @@
     confirm:
         delete: "Você tem certeza que deseja deletar?"
     label:
+      user:
+        title: "Faça login na sua conta"
+        email: "E-mail"
+        password: "Senha"
+        remember_me: "Lembre-se de mim neste dispositivo"
+        login: "Entrar"
+        forgot_password: "Esqueceu sua senha?"
+        sign_up: "Registrar"
+        dont_have_account: "Não tem uma conta?"
       proponent:
         address: "Endereço"
         contacts: "Contatos"
