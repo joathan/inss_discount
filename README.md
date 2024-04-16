@@ -9,7 +9,7 @@ git clone git@github.com:joathan/inss_discount.git
   
 - Copiar o arquivo .env.template para .env
 ```bash
-cp .env.template .env
+cp .env.template.erb .env
 ```
 
 - Rodar o docker compose:
