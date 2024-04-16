@@ -52,16 +52,6 @@ services:
     networks:
       - my-network
 
-  guard:
-    build: .
-    volumes:
-      - .:/home/app/web
-    environment:
-      - RAILS_ENV=development
-    command: bundle exec guard --no-bundler-warning --no-interactions
-    networks:
-      - my-network
-
   nginx:
     build:
       context: .
