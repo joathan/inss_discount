@@ -1,24 +1,49 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Passos para rodar o projeto:
 
-Things you may want to cover:
+- Clonar o repositório:
+```bash
+git clone git@github.com:joathan/inss_discount.git
+```
+  
+- Copiar o arquivo .env.template para .env
+```bash
+cp .env.template .env
+```
 
-* Ruby version
+- Rodar o docker compose:
+```bash
+docker compose up -d
+```
 
-* System dependencies
+- Para criar dados iniciais:
+```bash
+docker compose run --rm inss bundle exec rails db:seed
+```
 
-* Configuration
+- Para acessar a aplicação:
+```bash
+http://localhost:8020
 
-* Database creation
+# Usuario padrão para login
+Usuário: admin@inss.com.br
+Senha: 123123
+```
 
-* Database initialization
+# Comandos úteis
 
-* How to run the test suite
+- Para acessar o container:
+```bash
+docker compose exec inss bash
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+- Para rodar o rubocop:
+```bash
+docker compose run --rm inss bundle exec rubocop
+```
 
-* Deployment instructions
-
-* ...
+- Para rodar os testes:
+```bash
+docker compose run --rm inss bundle exec rspec
+```
