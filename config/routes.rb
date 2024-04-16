@@ -10,5 +10,5 @@ Rails.application.routes.draw do
   resources :proponents
   devise_for :users
 
-  root "users#sign_in"
+  root to: "proponents#index"
 end
