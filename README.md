@@ -6,6 +6,14 @@
 ```bash
 git clone git@github.com:joathan/inss_discount.git
 ```
+
+
+### Opção 1 (Recomendado) 🎉
+```bash
+make setup
+```
+
+### Opção 2 (Manual) 🤷‍♂ ️
   
 - Copiar o arquivo .env.template para .env
 ```bash
