@@ -1,127 +1,129 @@
-<%= form_with(model: proponent, class: "row g-3", local: true, data: { controller: "nested-form zip inss", nested_form_wrapper_selector_value: '.nested-form-wrapper' }) do |form| %>
-  <% if proponent.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(proponent.errors.count, "error") %> prohibited this proponent from being saved:</h2>
+<div class="card">
+  <div class="card-header">
+    <%= t("views.form.proponent.new.title") %>
+  </div>
 
-      <ul>
-        <% proponent.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+  <%= form_with(model: proponent, local: true, data: { controller: "nested-form zip inss", nested_form_wrapper_selector_value: '.nested-form-wrapper' }) do |form| %>
+    <div class="card-body row g-3">
+      <div class="col-md-10">
+        <%= form.label :name, class: "form-label" %>
+        <%= form.text_field :name, 
+            class: "form-control form-control-sm has-validation #{valid(form, :name)}" %>
+        <%= errors_for(form, :name) if form.object.errors[:name].present? %>
+      </div>
+
+      <div class="col-md-2">
+        <%= form.label :cpf, class: "form-label" %>
+        <%= form.text_field :cpf,
+            class: "form-control form-control-sm #{valid(form, :cpf)}",
+            placeholder: "000.000.000-00",
+            data: {
+              controller: "imask",
+              imask_type_value: "cpf"
+            } %>
+        <%= errors_for(form, :cpf) if form.object.errors[:cpf].present? %>
+      </div>
+
+      <p><%= t("helpers.label.proponent.address") %></p>
+      <%= form.fields_for :address do |address_fields| %>
+          <div class="col-md-2">
+            <%= address_fields.label :zip, class: "form-label" %>
+            <%= address_fields.text_field :zip,
+                value: proponent.address&.[]('zip'),
+                class: "form-control form-control-sm",
+                placeholder: "00000-000",
+                data: {
+                  zip_target: "zip",
+                  action: "keyup->zip#search",
+                  controller: "imask",
+                  imask_type_value: "zip_code"  
+                } %>
+          </div>
+
+          <div class="col-md-5">
+            <%= form.label :street, class: "form-label" %>
+            <%= address_fields.text_field :street,
+                value: proponent.address&.[]('street'),
+                class: "form-control form-control-sm",
+                data: { zip_target: "street" } %>
+          </div>
+
+          <div class="col-md-1">
+            <%= form.label :number, class: "form-label" %>
+            <%= address_fields.text_field :number,
+                value: proponent.address&.[]('number'),
+                class: "form-control form-control-sm" %>
+          </div>
+
+          <div class="col-md-3">
+            <%= form.label :city, class: "form-label" %>
+            <%= address_fields.text_field :city,
+                value: proponent.address&.[]('city'),
+                class: "form-control form-control-sm",
+                data: { zip_target: "city" } %>
+          </div>
+
+          <div class="col-md-1">
+            <%= form.label :state, class: "form-label" %>
+            <%= address_fields.text_field :state,
+                value: proponent.address&.[]('state'),
+                class: "form-control form-control-sm",
+                data: { zip_target: "state" } %>
+          </div>
+      <% end %>
+
+      <div class="col-md-2">
+        <%= form.label :salary, class: "form-label" %>
+        <%= form.text_field :salary,
+            value: salary_formatted(proponent),
+            placeholder: "R$ 0,00",
+            class: "form-control form-control-sm #{valid(form, :salary)}",
+            data: { 
+              controller: "imask",
+              imask_type_value: "currency",
+              inss_target: "salary"
+            } %>
+        <%= errors_for(form, :salary) if form.object.errors[:salary].present? %>
+      </div>
+
+      <div class="col-md-2">
+        <%= form.label :inss_discount, class: "form-label" %>
+        <%= form.text_field :inss_discount,
+            class: "form-control form-control-sm #{valid(form, :inss_discount)}",
+            readonly: true,
+            value: inss_discount_formatted(proponent),
+            placeholder: "R$ 0,00",
+            data: {
+              inss_target: "discount"
+            } %>
+        <%= errors_for(form, :inss_discount) if form.object.errors[:inss_discount].present? %>
+      </div>
+
+      <div>
+        <p><%= t("helpers.label.proponent.contacts") %>
+        <button type="button" data-action="nested-form#add" class="btn btn-outline-success btn-sm mx-4">
+          <i class="bi bi-plus"></i>
+          Novo contato
+          </button>
+        </p>
+        <template data-nested-form-target="template">
+          <%= form.fields_for :contacts, Contact.new, child_index: 'NEW_RECORD' do |todo_fields| %>
+            <%= render "contacts", f: todo_fields %>
+          <% end %>
+        </template>
+
+        <%= form.fields_for :contacts do |todo_fields| %>
+          <%= render "contacts", f: todo_fields %>
         <% end %>
-      </ul>
+
+        <div data-nested-form-target="target"></div>
+      </div>
+    </div>
+
+    <div class="card-footer text-body-secondary">
+      <div class="d-flex justify-content-end">
+        <%= form.submit class: "btn btn-sm btn-success" %>
+      </div>
     </div>
   <% end %>
-
-  <div class="col-md-10">
-    <%= form.label :name, class: "form-label" %>
-    <%= form.text_field :name, class: "form-control form-control-sm" %>
-  </div>
-
-  <div class="col-md-2">
-    <%= form.label :cpf, class: "form-label" %>
-    <%= form.text_field :cpf,
-        class: "form-control form-control-sm",
-        placeholder: "000.000.000-00",
-        data: {
-          controller: "imask",
-          imask_type_value: "cpf"
-        } %>
-  </div>
-
-  <p>Endereço:</p>
-  <%= form.fields_for :address do |address_fields| %>
-      <div class="col-md-2">
-        <%= address_fields.label :zip, class: "form-label" %>
-        <%= address_fields.text_field :zip,
-            value: proponent.address&.[]('zip'),
-            class: "form-control form-control-sm",
-            placeholder: "00000-000",
-            data: {
-              zip_target: "zip",
-              action: "keyup->zip#search",
-              controller: "imask",
-              imask_type_value: "zip_code"  
-            } %>
-      </div>
-
-      <div class="col-md-5">
-        <%= form.label :street, class: "form-label" %>
-        <%= address_fields.text_field :street,
-            value: proponent.address&.[]('street'),
-            class: "form-control form-control-sm",
-            data: { zip_target: "street" } %>
-      </div>
-
-      <div class="col-md-1">
-        <%= form.label :number, class: "form-label" %>
-        <%= address_fields.text_field :number,
-            value: proponent.address&.[]('number'),
-            class: "form-control form-control-sm" %>
-      </div>
-
-      <div class="col-md-3">
-        <%= form.label :city, class: "form-label" %>
-        <%= address_fields.text_field :city,
-            value: proponent.address&.[]('city'),
-            class: "form-control form-control-sm",
-            data: { zip_target: "city" } %>
-      </div>
-
-      <div class="col-md-1">
-        <%= form.label :state, class: "form-label" %>
-        <%= address_fields.text_field :state,
-            value: proponent.address&.[]('state'),
-            class: "form-control form-control-sm",
-            data: { zip_target: "state" } %>
-      </div>
-  <% end %>
-
-  <div class="col-md-2">
-    <%= form.label :salary, class: "form-label" %>
-    <%= form.text_field :salary,
-        value: salary_formatted(proponent),
-        placeholder: "R$ 0,00",
-        class: "form-control form-control-sm",
-        data: { 
-          controller: "imask",
-          imask_type_value: "currency",
-          inss_target: "salary"
-        } %>
-  </div>
-
-  <div class="col-md-2">
-    <%= form.label :inss_discount, class: "form-label" %>
-    <%= form.text_field :inss_discount,
-        class: "form-control form-control-sm",
-        readonly: true,
-        placeholder: "R$ 0,00",
-        data: {
-          controller: "imask",
-          imask_type_value: "currency",
-          inss_target: "discount"
-        } %>
-  </div>
-
-  <div>
-    <p>Contatos:
-      <button type="button" data-action="nested-form#add" class="btn">
-        <i class="bi bi-plus"></i>
-        Novo contato
-      </button>
-    </p>
-    <template data-nested-form-target="template">
-      <%= form.fields_for :contacts, Contact.new, child_index: 'NEW_RECORD' do |todo_fields| %>
-        <%= render "contacts", f: todo_fields %>
-      <% end %>
-    </template>
-
-    <%= form.fields_for :contacts do |todo_fields| %>
-      <%= render "contacts", f: todo_fields %>
-    <% end %>
-
-    <div data-nested-form-target="target"></div>
-  </div>
-  
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>
