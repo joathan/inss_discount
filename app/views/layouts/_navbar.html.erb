@@ -11,6 +11,7 @@
           <%= link_to t("views.nav.item"), proponents_path, class: "nav-link #{'active' if current_page?(proponents_path)}" %>
         </li>
       </ul>
+      <%= render "layouts/languages" %>
       <ul class="navbar-nav mb-2 mb-lg-0">
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

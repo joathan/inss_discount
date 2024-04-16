@@ -16,6 +16,9 @@ application.register("inss", InssController)
 import PieChartController from "./pie_chart_controller"
 application.register("pie-chart", PieChartController)
 
+import LanguageController from "./language_controller"
+application.register("language", LanguageController)
+
 import RailsNestedForm from "@stimulus-components/rails-nested-form";
 application.register("nested-form", RailsNestedForm);
 
