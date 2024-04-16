@@ -1,6 +1,6 @@
 # README
 
-Passos para rodar o projeto:
+## Passos para rodar o projeto:
 
 - Clonar o repositório:
 ```bash
@@ -31,7 +31,7 @@ Usuário: admin@inss.com.br
 Senha: 123123
 ```
 
-# Comandos úteis
+## Comandos úteis
 
 - Para acessar o container:
 ```bash
